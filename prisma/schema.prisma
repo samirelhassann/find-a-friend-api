@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ORG
+  ADMIN
+}
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum QuantityLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model City {
+  id         String    @id @default(uuid())
+  name       String    @unique
+  state      String
+  created_at DateTime  @default(now())
+  addresss   Address[]
+
+  @@map("cities")
+}
+
+model Address {
+  id         String   @id @default(uuid())
+  street     String
+  zip_code   String
+  complement String?
+  created_at DateTime @default(now())
+
+  city    City   @relation(fields: [city_id], references: [id])
+  city_id String
+
+  users User[]
+
+  @@map("address")
+}
+
+model User {
+  id               String   @id @default(uuid())
+  name             String
+  email            String   @unique
+  password_hash    String
+  cellphone_number String?
+  role             Role     @default(ORG)
+  created_at       DateTime @default(now())
+
+  address    Address? @relation(fields: [address_id], references: [id])
+  address_id String?
+
+  pets Pet[]
+
+  @@map("users")
+}
+
+model Pet {
+  id                 String        @id @default(uuid())
+  name               String
+  about              String
+  age                Int
+  size               Size
+  energy_level       QuantityLevel
+  independency_level QuantityLevel
+  environment        String
+  created_at         DateTime      @default(now())
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  petRequirements PetRequirement[]
+
+  @@map("pets")
+}
+
+model PetRequirement {
+  id          String   @id @default(uuid())
+  requirement String
+  created_at  DateTime @default(now())
+
+  pet    Pet?    @relation(fields: [pet_id], references: [id])
+  pet_id String?
+
+  @@map("pets_requirements")
+}

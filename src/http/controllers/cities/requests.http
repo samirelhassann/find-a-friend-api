@@ -1,0 +1,12 @@
+
+@bearerToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI1ZjhjODI4NS1hYjVmLTQxZDMtYWRmYi1mZDhiOTY4ZTc1ZTgiLCJpYXQiOjE2ODczMTgzMjcsImV4cCI6MTY4NzMxODkyN30.0fAgoKB6y8QdK03NBcv3_0Ymo4VV55UY-jtAQoEUIx0
+
+### Create City
+POST http://localhost:3333/cities
+content-type: application/json
+Authorization: {{bearerToken}}
+
+{
+    "name": "São Paulo",
+    "state": "SP"
+}

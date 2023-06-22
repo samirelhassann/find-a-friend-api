@@ -1,0 +1,26 @@
+
+### GET MEALS HISTORY BY USER
+POST http://localhost:3333/users
+content-type: application/json
+
+{
+    "name": "São Paulo",
+    "email": "samirelhassann@gmail.com",
+    "password": "samir123",
+    "role": "ORG",
+    "cellphoneNumber": "123",
+    "address":{
+        "cityName": "São Paulo",
+        "street": "Rua test",
+        "zipCode": "0123123"
+    }
+}
+
+### AUTHENTICATE
+POST http://localhost:3333/login
+content-type: application/json
+
+{
+    "email": "samirelhassann@gmail.com",
+    "password": "samir123"
+}

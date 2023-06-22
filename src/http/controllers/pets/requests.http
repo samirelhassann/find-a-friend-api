@@ -1,0 +1,35 @@
+
+@bearerToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiT1JHIiwic3ViIjoiNWY4YzgyODUtYWI1Zi00MWQzLWFkZmItZmQ4Yjk2OGU3NWU4IiwiaWF0IjoxNjg3Mzg4NjkxLCJleHAiOjE2ODc0NzUwOTF9.HjB3raUl5a7-JXQ7kU9BrMpepfIGBRiI8ddHxDdnleY
+
+### Create Pet
+POST http://localhost:3333/pets
+content-type: application/json
+Authorization: {{bearerToken}}
+
+{
+    "name": "Pepeto",
+    "age": 2,
+    "about": "Misturado com york e pincher",
+    "size": "SMALL",
+    "energyLevel": "HIGH",
+    "independencyLevel": "MEDIUM",
+    "environment": "Normal",
+    "requirements": [
+        "Necessário dar banho regularmente"
+    ]
+}
+
+
+### Search Pets
+POST http://localhost:3333/pets/search
+content-type: application/json
+
+{
+   "city": "São"
+}
+
+### Search by petid
+GET http://localhost:3333/pets/070be8ff-5747-4f9b-884e-ac9b12cf8862
+content-type: application/json
+
+
