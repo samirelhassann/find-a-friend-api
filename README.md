@@ -1,6 +1,6 @@
 # find-a-friend-api
 
-A daily diet api created using Nodejs + Typescript + SOLID principles  
+A api focused on pet adoption logic, created using Nodejs + Typescript + SOLID principles  
 
 This is a project used for study purposes only • [Samir El Hassan](https://github.com/samirelhassann)
 
