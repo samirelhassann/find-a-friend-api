@@ -9,13 +9,21 @@
     "build": "tsup src --out-dir build",
     "update-schema": "yarn prisma generate && yarn prisma migrate dev",
     "lint": "eslint src",
-    "test": "vitest run --dir src/useCases/test"
+    "test": "vitest run --dir src/useCases",
+    "pretest-e2e": "cd ./prisma/vitest-environment-prisma && yarn link && cd .. && cd .. && pwd && yarn link vitest-environment-prisma",
+    "test-e2e": "vitest run --dir src/http/controllers",
+    "pretest-e2e-local": "docker compose up -d && cd ./prisma/vitest-environment-prisma && yarn unlink && yarn link && cd .. && cd .. && pwd && yarn link vitest-environment-prisma",
+    "test-e2e-local": "vitest run --dir src/http/controllers",
+    "test-e2e-watch": "vitest --dir src/http/controllers"
+
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/node": "20.3.1",
+    "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.60.0",
     "@typescript-eslint/parser": "5.60.0",
+    "@vitest/coverage-c8": "0.32.2",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript-prettier": "5.0.0",
     "eslint-plugin-import": "2.27.5",
@@ -29,9 +37,10 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
+    "supertest": "6.3.3",
     "@fastify/cookie": "8.3.0",
     "@fastify/jwt": "7.0.0",
-    "@prisma/client": "4.15.0",
+    "@prisma/client": "4.16.1",
     "bcryptjs": "2.4.3",
     "dotenv": "16.3.1",
     "eslint": "8.43.0",

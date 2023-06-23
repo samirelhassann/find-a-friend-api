@@ -1,12 +1,24 @@
 
+### CREATE ADMIN
+POST http://localhost:3333/users
+content-type: application/json
+
+{
+    "name": "São Paulo",
+    "email": "admin@gmail.com",
+    "password": "admin123",
+    "role": "ADMIN"
+}
+
+
 ### GET MEALS HISTORY BY USER
 POST http://localhost:3333/users
 content-type: application/json
 
 {
     "name": "São Paulo",
-    "email": "samirelhassann@gmail.com",
-    "password": "samir123",
+    "email": "org@gmail.com",
+    "password": "org123",
     "role": "ORG",
     "cellphoneNumber": "123",
     "address":{
@@ -21,6 +33,16 @@ POST http://localhost:3333/login
 content-type: application/json
 
 {
-    "email": "samirelhassann@gmail.com",
-    "password": "samir123"
+    "email": "org@gmail.com",
+    "password": "org123"
+}
+
+
+### AUTHENTICATE
+POST http://localhost:3333/login
+content-type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "admin123"
 }
