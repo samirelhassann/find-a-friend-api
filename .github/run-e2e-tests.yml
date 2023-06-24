@@ -1,0 +1,32 @@
+name: Run e2e Tests
+
+on: [pull_request]
+
+jobs:
+  run-unit-tests:
+    name: Run e2e Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: bitnami/postgresql
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: ps123
+          POSTGRESQL_DATABASE: findafriend
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "yarn"
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn run test-e2e
+        env:
+          JWT_SECRET: test
+          DATABASE_URL: "postgresql://docker:ps123@localhost:5432/findafriend?schema=public"

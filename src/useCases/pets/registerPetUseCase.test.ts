@@ -49,7 +49,7 @@ describe("Given the registerPetUseCaseTest", () => {
   it("should be able to create a pet", async () => {
     const createdUser = await usersRepository.create(userPropsMock);
 
-    const { pet } = await sut.execute({
+    const pet = await sut.execute({
       ...propsMock,
       userId: createdUser.id,
     });

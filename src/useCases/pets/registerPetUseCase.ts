@@ -16,10 +16,6 @@ interface RegisterPetUseCaseRequest {
   requirements?: string[];
 }
 
-interface RegisterPetUseCaseResponse {
-  pet: Pet;
-}
-
 export class RegisterPetUseCase {
   constructor(
     private usersRepository: UsersRepository,
@@ -37,7 +33,7 @@ export class RegisterPetUseCase {
     environment,
     requirements,
     userId,
-  }: RegisterPetUseCaseRequest): Promise<RegisterPetUseCaseResponse> {
+  }: RegisterPetUseCaseRequest): Promise<Pet> {
     {
       const hasUser = await this.usersRepository.findById(userId);
 
@@ -63,7 +59,7 @@ export class RegisterPetUseCase {
         });
       });
 
-      return { pet };
+      return pet;
     }
   }
 }

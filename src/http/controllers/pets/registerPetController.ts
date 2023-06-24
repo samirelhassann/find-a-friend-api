@@ -24,5 +24,5 @@ export async function RegisterPetController(
 
   await makeRegisterPetUseCase()
     .execute({ ...bodySchema.parse(request.body), userId })
-    .then(() => reply.status(201).send());
+    .then((response) => reply.status(201).send(response));
 }
